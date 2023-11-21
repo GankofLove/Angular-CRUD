@@ -1,0 +1,33 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "status": [
+    {
+      "title": "yoyoy",
+      "author": "sdfsdffdfd",
+      "date": "2023-11-15T23:00:00.000Z",
+      "id": 1
+    },
+    {
+      "title": "dfsdf",
+      "author": "sdfsdhsdhhdhdh",
+      "date": "2023-11-07T23:00:00.000Z",
+      "id": 2
+    }
+  ]
+}

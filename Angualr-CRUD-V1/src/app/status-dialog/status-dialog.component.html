@@ -1,0 +1,59 @@
+<div mat-dialog-title>
+  <h1>New Status</h1>
+</div>
+
+
+<form [formGroup]="statusForm" (ngSubmit)="onFormSubmit()">
+
+  <div mat-dialog-content class="content">
+    <div class="row">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput type="text" placeholder="Todo" formControlName="title"> <!-- min 31:00 -->
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Author</mat-label>
+        <input matInput type="text" placeholder="Mustermann" formControlName="author">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+    <div class="row">
+      <mat-radio-group aria-label="Select an option"> <!-- formControlName="priority"> -->
+        <mat-label>Priority</mat-label>
+        <mat-radio-button value="1"> 1</mat-radio-button>
+        <mat-radio-button value="2"> 2</mat-radio-button>
+        <mat-radio-button value="2"> 3</mat-radio-button>
+        <mat-radio-button value="2"> 4</mat-radio-button>
+        <mat-radio-button value="2"> 5</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <!--
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>BLABLA</mat-label>
+        <mat-select>
+          <mat-option>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    -->
+  </div>
+
+
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">{{data ? 'Update': 'Save'}}</button>
+  </div>
+
+</form>
