@@ -33,6 +33,9 @@ export class AppComponent implements OnInit {
     private _coreService: CoreService) {
   }
 
+  panelOpenState = false;
+
+
   ngOnInit() {
     this.getStatusList()
   }

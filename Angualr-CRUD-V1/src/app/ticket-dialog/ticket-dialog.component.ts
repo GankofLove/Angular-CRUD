@@ -1,17 +1,16 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {StatusService} from "../servives/status.service";
-import {DialogRef} from "@angular/cdk/dialog";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CoreService} from "../core/core/core.service";
+import {StatusDialogComponent} from "../status-dialog/status-dialog.component";
 
 @Component({
-  selector: 'app-status-dialog',
-  templateUrl: './status-dialog.component.html',
-  styleUrl: './status-dialog.component.css'
+  selector: 'app-ticket-dialog',
+  templateUrl: './ticket-dialog.component.html',
+  styleUrl: './ticket-dialog.component.css'
 })
-export class StatusDialogComponent implements OnInit {
-
+export class TicketDialogComponent implements OnInit {
   protected readonly status = status;
 
   statusForm: FormGroup;
@@ -68,4 +67,7 @@ export class StatusDialogComponent implements OnInit {
     }
   }
 }
+
+
+
 

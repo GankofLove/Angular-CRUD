@@ -21,11 +21,15 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatSortModule} from "@angular/material/sort";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatCardModule} from "@angular/material/card";
+import {MatExpansionModule} from "@angular/material/expansion";
+import { TicketDialogComponent } from './ticket-dialog/ticket-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatusDialogComponent,
+    TicketDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCardModule,
+    MatExpansionModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

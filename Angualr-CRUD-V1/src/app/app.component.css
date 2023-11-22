@@ -7,8 +7,12 @@ main-body {
   margin: 0 auto;
   max-width: 1248px;
 
+
 }
 
 mat-form-field {
-     width: 100%;
-   }
+  width: 100%;
+
+}
+
+

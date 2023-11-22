@@ -1,9 +1,10 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Workboard</h1>
+  </mat-card-header>
+</mat-card>
+
 <mat-toolbar>
-
-  <h1>Angular CRUD</h1>
-
-  <span></span>
-  <span class="example-spacer"></span>
 
   <button mat-raised-button (click)="openStatusDialog()">
     Add Status
@@ -11,60 +12,80 @@
 
 </mat-toolbar>
 
-<div class="main-body">
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
-</mat-form-field>
 
-<div class="table-container">
-    <table mat-table [dataSource]="dataSource" matSort>
-
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-      </ng-container>
-
-      <!-- Title Column -->
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
-        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="author">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Author </th>
-        <td mat-cell *matCellDef="let row"> {{row.author}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-        <td mat-cell *matCellDef="let row"> {{row.date}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-        <td mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" (click)="openEditForm(row)" >
-          <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button color="warn" (click)="deleteStatus(row.id)">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </ng-container>
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Status Table
+      </mat-panel-title>
+      <mat-panel-description>
+        {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
 
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <div class="main-body">
+      <mat-form-field appearance="outline">
+        <mat-label>Filter Status</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
 
-      <!-- Row shown when there is no matching data. -->
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-    </table>
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-  </div>
-</div>
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+            <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Author</th>
+            <td mat-cell *matCellDef="let row"> {{row.author}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
+            <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
+            <td mat-cell *matCellDef="let row">
+              <button mat-icon-button color="primary" (click)="openEditForm(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteStatus(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+
 
 
