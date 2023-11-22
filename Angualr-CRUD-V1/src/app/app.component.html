@@ -15,25 +15,26 @@
   </button>
 </mat-toolbar>
 
+<!-- STATUS TABLE ------------------------------------------------------------ -->
 
 <mat-accordion>
-  <mat-expansion-panel (opened)="panelOpenState = true"
-                       (closed)="panelOpenState = false">
+  <mat-expansion-panel (opened)="panelStatusOpenState = true"
+                       (closed)="panelStatusOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
         Status Table
       </mat-panel-title>
       <mat-panel-description>
-        {{panelOpenState ? 'open' : 'closed'}}
+        {{panelStatusOpenState ? 'open' : 'closed'}}
       </mat-panel-description>
     </mat-expansion-panel-header>
 
 
 
-    <div class="main-body">
-      <mat-form-field appearance="outline">
+    <div class="status-table-body">
+      <mat-form-field appearance="fill">
         <mat-label>Filter Status</mat-label>
-        <input matInput (keyup)="applyFilter($event)" #input>
+        <input matInput (keyup)="applyStatusTableFilter($event)" #input>
       </mat-form-field>
 
       <div class="table-container">
@@ -60,10 +61,10 @@
           </ng-container>
 
           <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Update/Delete</th>
             <td mat-cell *matCellDef="let row">
 
-              <button mat-icon-button color="primary" (click)="openEditForm(row)">
+              <button mat-icon-button color="primary" (click)="openEditStatusForm(row)">
                 <mat-icon>edit</mat-icon>
               </button>
               <button mat-icon-button color="warn" (click)="deleteStatus(row.id)">
@@ -88,6 +89,83 @@
   </mat-expansion-panel>
 </mat-accordion>
 
+<mat-card class="dividerCard">
+  <mat-card-content></mat-card-content>
+</mat-card>
+
+<!-- TICKET TABLE ------------------------------------------------------------ -->
+
+<mat-accordion>
+  <mat-expansion-panel (opened)="panelTicketOpenState = true"
+                       (closed)="panelTicketOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Ticket Table
+      </mat-panel-title>
+      <mat-panel-description>
+        {{panelTicketOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+
+    <div class="ticket-table-body">
+      <mat-form-field appearance="fill">
+        <mat-label>Filter Tickets</mat-label>
+        <input matInput (keyup)="applyTicketTableFilter($event)" #input>
+      </mat-form-field>
+
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+            <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Title</th>
+            <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Author</th>
+            <td mat-cell *matCellDef="let row"> {{row.author}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date</th>
+            <td mat-cell *matCellDef="let row"> {{row.date}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Update/Delete</th>
+            <td mat-cell *matCellDef="let row">
+
+              <button mat-icon-button color="primary" (click)="openEditTicketForm(row)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteTicket(row.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>
 
 
 

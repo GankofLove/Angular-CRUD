@@ -18,19 +18,11 @@
   },
   "status": [
     {
-      "title": "sadsa",
-      "author": "asad",
-      "date": "2023-11-22T23:00:00.000Z",
+      "title": "asdasda",
+      "author": "asdadada",
+      "date": "2023-11-06T23:00:00.000Z",
       "id": 1
     }
   ],
-  "tickets": [
-    {
-      "title": "aaaaa",
-      "author": "11111",
-      "date": "2023-11-07T23:00:00.000Z",
-      "priority": "",
-      "id": 1
-    }
-  ]
+  "tickets": []
 }

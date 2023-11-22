@@ -40,14 +40,17 @@ export class AppComponent implements OnInit {
     private _coreService: CoreService) {
   }
 
-  panelOpenState = false;
+  panelStatusOpenState = false;
+  panelTicketOpenState = false;
 
 
   ngOnInit() {
     this.getStatusList()
   }
 
-  applyFilter(event: Event) {
+
+  // Status-bezogene Methoden ----------------------------------------------------------------
+  applyStatusTableFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
@@ -56,8 +59,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-
-  // Status-bezogene Methoden ----------------------------------------------------------------
   openStatusDialog() {
     const dialogRef = this._dialog.open(StatusDialogComponent);
     dialogRef.afterClosed().subscribe({
@@ -92,7 +93,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  openEditForm(data: any) {
+  openEditStatusForm(data: any) {
     const dialogRef = this._dialog.open(StatusDialogComponent, {
       data: data,
     });
@@ -109,6 +110,15 @@ export class AppComponent implements OnInit {
 
 
   // Ticket-bezogene Methoden ----------------------------------------------------------------
+  applyTicketTableFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
   openTicketDialog() {
     const dialogRef = this._dialog.open(TicketDialogComponent);
     dialogRef.afterClosed().subscribe(val => {

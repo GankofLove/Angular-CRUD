@@ -12,8 +12,6 @@ import { TicketService} from "../servives/ticket.service";
 })
 export class TicketDialogComponent implements OnInit {
 
-
-
   ticketForm: FormGroup;
 
   constructor(

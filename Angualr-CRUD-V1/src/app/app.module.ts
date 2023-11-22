@@ -24,6 +24,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { TicketDialogComponent } from './ticket-dialog/ticket-dialog.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { TicketDialogComponent } from './ticket-dialog/ticket-dialog.component';
     MatSnackBarModule,
     MatCardModule,
     MatExpansionModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

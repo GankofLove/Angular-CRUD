@@ -2,16 +2,24 @@
   flex: 1 1 auto;
 }
 
-main-body {
+.status-table-body {
   padding-top: 20px;
   margin: 0 auto;
-  max-width: 1248px;
+  max-width: 1400px;
+}
 
-
+.ticket-table-body {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 1400px;
 }
 
 mat-form-field {
   width: 100%;
 
+}
+
+.dividerCard {
+  background: whitesmoke;
 }
 
