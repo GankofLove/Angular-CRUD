@@ -47,6 +47,17 @@ export class AppComponent implements OnInit {
     this.getStatusList()
   }
 
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+
+  // Status-bezogene Methoden ----------------------------------------------------------------
   openStatusDialog() {
     const dialogRef = this._dialog.open(StatusDialogComponent);
     dialogRef.afterClosed().subscribe({
@@ -70,14 +81,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
 
   deleteStatus(id: number) {
     this._statusService.deleteStatus(id).subscribe({
@@ -103,9 +106,9 @@ export class AppComponent implements OnInit {
     })
   }
 
-  // Ihre bestehenden Methoden und ngOnInit
 
-  // Ticket-bezogene Methoden
+
+  // Ticket-bezogene Methoden ----------------------------------------------------------------
   openTicketDialog() {
     const dialogRef = this._dialog.open(TicketDialogComponent);
     dialogRef.afterClosed().subscribe(val => {
