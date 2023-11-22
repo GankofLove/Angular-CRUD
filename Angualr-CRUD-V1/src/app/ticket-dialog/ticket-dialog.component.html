@@ -1,9 +1,9 @@
 <div mat-dialog-title>
-  <h1>New Status</h1>
+  <h1>New Ticket</h1>
 </div>
 
 
-<form [formGroup]="statusForm" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="ticketForm" (ngSubmit)="onFormSubmit()">
 
   <div mat-dialog-content class="content">
     <div class="row">
@@ -36,18 +36,6 @@
         <mat-radio-button value="2"> 5</mat-radio-button>
       </mat-radio-group>
     </div>
-
-    <!--
-    <div class="row">
-      <mat-form-field appearance="fill">
-        <mat-label>BLABLA</mat-label>
-        <mat-select>
-          <mat-option>
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    -->
   </div>
 
 

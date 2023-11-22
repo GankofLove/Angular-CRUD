@@ -1,46 +1,45 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {StatusService} from "../servives/status.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CoreService} from "../core/core/core.service";
-import {StatusDialogComponent} from "../status-dialog/status-dialog.component";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { CoreService } from "../core/core/core.service";
+import { TicketService} from "../servives/ticket.service";
 
 @Component({
   selector: 'app-ticket-dialog',
   templateUrl: './ticket-dialog.component.html',
-  styleUrl: './ticket-dialog.component.css'
+  styleUrls: ['./ticket-dialog.component.css']
 })
 export class TicketDialogComponent implements OnInit {
-  protected readonly status = status;
 
-  statusForm: FormGroup;
+
+
+  ticketForm: FormGroup;
 
   constructor(
     private _fb: FormBuilder,
-    private _statusService: StatusService,
-    private _dialogRef: MatDialogRef<StatusDialogComponent>,
+    private _ticketService: TicketService,
+    private _dialogRef: MatDialogRef<TicketDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _coreService: CoreService
   ) {
-    this.statusForm = this._fb.group({
+    this.ticketForm = this._fb.group({
       title: '',
       author: '',
-      date: ''
-      // priority: '',
+      date: '',
+      priority: '',
     });
   }
 
   ngOnInit() {
-    this.statusForm.patchValue(this.data);
+    this.ticketForm.patchValue(this.data);
   }
 
-
-
   onFormSubmit() {
-    if (this.statusForm.valid) {
+    if (this.ticketForm.valid) {
       if (this.data) {
-        this._statusService
-          .updateStatus(this.data.id, this.statusForm.value)
+        this._ticketService
+          .updateTicket(this.data.id, this.ticketForm.value)
           .subscribe({
             next: (val: any) => {
               this._coreService.openSnackBar('Status updated');
@@ -51,8 +50,8 @@ export class TicketDialogComponent implements OnInit {
             },
           });
       } else {
-        this._statusService
-          .addStatus(this.statusForm.value)
+        this._ticketService
+          .addTicket(this.ticketForm.value)
           .subscribe({
             next: (val: any) => {
               alert("");
@@ -67,7 +66,3 @@ export class TicketDialogComponent implements OnInit {
     }
   }
 }
-
-
-
-

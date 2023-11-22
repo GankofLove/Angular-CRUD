@@ -18,16 +18,10 @@
   },
   "status": [
     {
-      "title": "aaaaa",
-      "author": "aaaaaa",
-      "date": "2023-11-06T23:00:00.000Z",
-      "id": 1
-    },
-    {
-      "title": "bbbbbbb",
-      "author": "bbbbbb",
+      "title": "aaaa",
+      "author": "aaaaa",
       "date": "2023-11-05T23:00:00.000Z",
-      "id": 2
+      "id": 1
     }
   ]
 }

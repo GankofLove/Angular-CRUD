@@ -6,6 +6,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {CoreService} from "./core/core/core.service";
+import {TicketService} from "./servives/ticket.service";
+import {TicketDialogComponent} from "./ticket-dialog/ticket-dialog.component";
 
 @Component({
   selector: 'app-root',
@@ -14,6 +16,9 @@ import {CoreService} from "./core/core/core.service";
 })
 
 export class AppComponent implements OnInit {
+
+  title = 'Angualr-CRUD-V1';
+
   displayedColumns: string[] = [
     'id',
     'title',
@@ -27,9 +32,11 @@ export class AppComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
+
   constructor(
     private _dialog: MatDialog,
     private _statusService: StatusService,
+    private _ticketService: TicketService, // Hinzufügen des TicketService
     private _coreService: CoreService) {
   }
 
@@ -96,5 +103,52 @@ export class AppComponent implements OnInit {
     })
   }
 
+  // Ihre bestehenden Methoden und ngOnInit
+
+  // Ticket-bezogene Methoden
+  openTicketDialog() {
+    const dialogRef = this._dialog.open(TicketDialogComponent);
+    dialogRef.afterClosed().subscribe(val => {
+      if (val) {
+        this.getTicketList();
+      }
+    });
+  }
+
+  getTicketList() {
+    this._ticketService.getTicketList().subscribe({
+      next: (res) => {
+        // Logik zum Aktualisieren Ihrer Ticket-Datenquelle
+      },
+      error: console.log,
+    });
+  }
+
+  deleteTicket(id: number) {
+    this._ticketService.deleteTicket(id).subscribe({
+      next: (res) => {
+        this._coreService.openSnackBar('Ticket deleted!', 'done');
+        this.getTicketList();
+      },
+      error: console.log,
+    });
+  }
+
+  openEditTicketForm(data: any) {
+    const dialogRef = this._dialog.open(TicketDialogComponent, {
+      data: data,
+    });
+
+    dialogRef.afterClosed().subscribe(val => {
+      if (val) {
+        this.getTicketList();
+      }
+    });
+  }
+
+  // Weitere Ticket-bezogene Methoden können hier hinzugefügt werden
 
 }
+
+
+

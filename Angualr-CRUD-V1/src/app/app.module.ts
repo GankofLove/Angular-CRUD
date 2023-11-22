@@ -25,11 +25,13 @@ import {MatCardModule} from "@angular/material/card";
 import {MatExpansionModule} from "@angular/material/expansion";
 import { TicketDialogComponent } from './ticket-dialog/ticket-dialog.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     StatusDialogComponent,
     TicketDialogComponent,
+
   ],
   imports: [
     BrowserModule,
