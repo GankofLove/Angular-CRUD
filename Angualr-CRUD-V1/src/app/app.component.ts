@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
   }
 
 
+
   // Status-bezogene Methoden ----------------------------------------------------------------
   applyStatusTableFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -82,7 +83,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
   deleteStatus(id: number) {
     this._statusService.deleteStatus(id).subscribe({
       next: (res) => {
@@ -106,8 +106,6 @@ export class AppComponent implements OnInit {
       }
     })
   }
-
-
 
   // Ticket-bezogene Methoden ----------------------------------------------------------------
   applyTicketTableFilter(event: Event) {
